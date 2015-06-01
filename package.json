@@ -3,6 +3,9 @@
 	"version": "1.3",
 	"homepage": "https://github.com/bond-agency/covervid",
 	"author": "Joonas Salovaara",
+	"main": [
+  	"covervid.js"
+  ],
 	"devDependencies": {
 		"grunt": "~0.4.4",
 		"grunt-contrib-clean": "~0.5.0",
