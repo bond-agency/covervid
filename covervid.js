@@ -1,8 +1,6 @@
 var coverVid = function (elem, width, height, onElementResize) {
 	// Set default arguments if not passed.
-	if (typeof(onElementResize) === true) {
-		onElementResize = true;
-	} else {
+	if (typeof(onElementResize) === undefined) {
 		onElementResize = false;
 	}
 
@@ -31,7 +29,7 @@ var coverVid = function (elem, width, height, onElementResize) {
 	elem.parentNode.style.overflow = 'hidden';
 
 	// Throttle for resize function.
-	var throttle = function(fn, threshhold, scope) {
+	function throttle(fn, threshhold, scope) {
 	  if(threshhold === undefined) {
 	    threshhold = 250;
 	  }
@@ -54,10 +52,10 @@ var coverVid = function (elem, width, height, onElementResize) {
 	      fn.apply(context, args);
 	    }
 	  };
-	};
+	}
 
 	// Define the attached selector.
-	var sizeVideo = function() {
+	function sizeVideo() {
 		// Get parent element height and width.
 		var parentHeight = elem.parentNode.offsetHeight;
 		var parentWidth = elem.parentNode.offsetWidth;
@@ -78,31 +76,7 @@ var coverVid = function (elem, width, height, onElementResize) {
 			elem.style.height = parentHeight+'px';
 			elem.style.width = 'auto';
 		}
-	};
-
-	/**
-	 * Get the elements outer width
-	 * including margin.
-	 */
-	function outerWidth(el) {
-	  var width = el.offsetWidth;
-	  var style = getComputedStyle(el);
-
-	  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
-	  return width;
 	}
-
-	/**
-	 * Get the elements outer height
-	 * including margin.
-	 */
-	var outerHeight = function(el) {
-	  var height = el.offsetHeight;
-	  var style = getComputedStyle(el);
-
-	  height += parseInt(style.marginTop) + parseInt(style.marginBottom);
-	  return height;
-	};
 
 	/**
 	 * Attaches a seasonally triggered watcher
@@ -110,19 +84,25 @@ var coverVid = function (elem, width, height, onElementResize) {
 	 * the outer width / height changes it
 	 * triggers the video resizing.
 	 */
-	var addRatioWatcher = function(elem, frequency) {
+	function addRatioWatcher(elem, frequency) {
+		// Initial measurements.
 		var last_height = 0,
 				last_width = 0,
-				new_width = outerWidth(elem),
-				new_height = outerHeight(elem);
+				new_width = elem.parentNode.offsetWidth,
+				new_height = elem.parentNode.offsetHeight;
 		var id = window.setInterval(function() {
+			// Update widths & heights.
+			new_width = elem.parentNode.offsetWidth;
+			new_height = elem.parentNode.offsetHeight;
+			// Check if we need to resize video.
 			if (new_width !== last_width || new_height !== last_height) {
+				console.log("Resizing from watcher");
 				sizeVideo();
 				last_height = new_height;
 				last_width = new_width;
 			}
 		}, frequency);
-	};
+	}	
 
 };
 
