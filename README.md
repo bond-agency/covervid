@@ -36,7 +36,7 @@ How do I use it?
     }
     ```
 
-3. Now, we would simply call <code>coverVid(Container-Element, Video-Width, Video-Height)</code> on the video element, passing through the native dimensions of the video. If you are using jQuery, we would call <code>$('.covervid-video').coverVid(1920, 1080);</code>.
+3. Now, we would simply call <code>coverVid(Container-Element, Video-Width, Video-Height)</code> on the video element, passing through the native dimensions of the video. If you are using jQuery, we would call <code>$('.covervid-video').coverVid(1920, 1080);</code>. If your content over the background video can change height or width dynamically without window resize pass <code>true</code> as a third argument like this <code>$('.covervid-video').coverVid(1920, 1080, true);</code>.
 
 Browser support?
 ----------------
