@@ -96,7 +96,6 @@ var coverVid = function (elem, width, height, onElementResize) {
 			new_height = elem.parentNode.offsetHeight;
 			// Check if we need to resize video.
 			if (new_width !== last_width || new_height !== last_height) {
-				console.log("Resizing from watcher");
 				sizeVideo();
 				last_height = new_height;
 				last_width = new_width;
