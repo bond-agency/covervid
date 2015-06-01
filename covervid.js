@@ -1,4 +1,4 @@
-var coverVid = function (elem, onElementResize, width, height) {
+var coverVid = function (elem, width, height, onElementResize) {
 	// Set default arguments if not passed.
 	if (typeof(onElementResize) === true) {
 		onElementResize = true;
@@ -129,7 +129,7 @@ var coverVid = function (elem, onElementResize, width, height) {
 if (window.jQuery) {
 	jQuery.fn.extend({
 		'coverVid': function () {
-			coverVid(this[0], this[1], arguments[0], arguments[1]);
+			coverVid(this[0], arguments[0], arguments[1], arguments[2]);
 			return this;
 		}
 	});
