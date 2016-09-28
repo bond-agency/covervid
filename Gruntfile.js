@@ -1,14 +1,31 @@
+'use strict';
 module.exports = function(grunt) {
+	require('load-grunt-tasks')(grunt);
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
 		clean: ["covervid.min.js"],
 
-		uglify: {
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ['es2015']
+			},
 			dist: {
 				files: {
-					'covervid.min.js': ['covervid.js']
+						'covervid.min.js': 'covervid.js'
+				}
+			}
+    },
+
+		uglify: {
+			options: {
+      	mangle: false
+    	},
+			dist: {
+				files: {
+					'covervid.min.js': ['covervid.min.js']
 				}
 			}
 		},
@@ -26,7 +43,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['clean', 'uglify', 'watch']);
-	grunt.registerTask('publish', ['clean', 'uglify']);
+	grunt.registerTask('default', ['clean', 'babel', 'uglify', 'watch']);
+	grunt.registerTask('publish', ['clean', 'babel', 'uglify']);
 
 };

@@ -1,4 +1,4 @@
-exports.coverVid = function(elem, width, height, onElementResize) {
+export default function coverVid(elem, width, height, onElementResize) {
 	// Set default arguments if not passed.
 	if (typeof(onElementResize) === undefined) {
 		onElementResize = false;
