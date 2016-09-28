@@ -104,12 +104,3 @@ export default function coverVid(elem, width, height, onElementResize) {
 	}	
 
 };
-
-if (window.jQuery) {
-	jQuery.fn.extend({
-		'coverVid': function () {
-			coverVid(this[0], arguments[0], arguments[1], arguments[2]);
-			return this;
-		}
-	});
-}
