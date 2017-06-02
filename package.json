@@ -1,11 +1,9 @@
 {
   "name": "covervid",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "homepage": "https://github.com/bond-agency/covervid",
   "author": "Joonas Salovaara",
-  "main": [
-    "covervid.js"
-  ],
+  "main": "covervid.js",
   "devDependencies": {
     "babel-preset-es2015": "^6.14.0",
     "grunt": "~1.0.1",
